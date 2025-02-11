@@ -100,12 +100,13 @@ if st.button('Show Recommendation'):
     #         st.write(f"**{recommended_movie_names[i]}**")
     #         st.write(f"⭐ Rating: {recommended_movie_ratings[i]}/10")
     if recommended_movie_names:
-        cols = st.columns(min(len(recommended_movie_names), 5))
+        num_movies = len(recommended_movie_names)
+        cols = st.columns(num_movies)  # Create only as many columns as needed
 
-        for i, (name, poster, rating) in enumerate(zip(recommended_movie_names, recommended_movie_posters, recommended_movie_ratings)):
+        for i in range(num_movies):
             with cols[i]:  
-                st.image(poster, use_container_width=True)
-                st.write(f"**{name}**")
-                st.write(f"⭐ Rating: {rating}/10")
-    else:
-        st.warning("No movies found matching your selection. Try a different genre or movie!")
+                st.image(recommended_movie_posters[i], use_container_width=True)  
+                st.write(f"**{recommended_movie_names[i]}**")  
+                st.write(f"⭐ Rating: {recommended_movie_ratings[i]}/10")
+else:
+    st.warning("No movies found matching your selection. Try a different genre or movie!")
