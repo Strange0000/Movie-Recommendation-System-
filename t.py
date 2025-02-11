@@ -93,9 +93,19 @@ if st.button('Show Recommendation'):
         # Pass the selected genre to the recommend function
         recommended_movie_names, recommended_movie_posters, recommended_movie_ratings = recommend(selected_movie_name, genre if genre != "Not Selected" else None) # Pass None if genre is "Not Selected"
     
-    cols = st.columns(5)
-    for i in range(len(recommended_movie_names)):
-        with cols[i]:
-            st.image(recommended_movie_posters[i], use_column_width=True)
-            st.write(f"**{recommended_movie_names[i]}**")
-            st.write(f"⭐ Rating: {recommended_movie_ratings[i]}/10")
+    # cols = st.columns(5)
+    # for i in range(len(recommended_movie_names)):
+    #     with cols[i]:
+    #         st.image(recommended_movie_posters[i], use_column_width=True)
+    #         st.write(f"**{recommended_movie_names[i]}**")
+    #         st.write(f"⭐ Rating: {recommended_movie_ratings[i]}/10")
+    if recommended_movie_names:
+        cols = st.columns(min(len(recommended_movie_names), 5))
+
+        for i, (name, poster, rating) in enumerate(zip(recommended_movie_names, recommended_movie_posters, recommended_movie_ratings)):
+            with cols[i]:  
+                st.image(poster, use_container_width=True)
+                st.write(f"**{name}**")
+                st.write(f"⭐ Rating: {rating}/10")
+    else:
+        st.warning("No movies found matching your selection. Try a different genre or movie!")
