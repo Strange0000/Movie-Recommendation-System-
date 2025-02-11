@@ -1,8 +1,11 @@
 Movie Recommendation System 🎬
 
+
 The Movie Recommendation System is a Python-based web application that helps users discover movies similar to their favorite ones. Built using Streamlit, Pandas, and Pickle, this system utilizes a similarity matrix to recommend movies based on content similarity. Additionally, users can filter recommendations by genre for a more personalized experience.
 
+
 🔹 Key Features:
+
 ✔️ Movie Similarity-Based Recommendations – Suggests movies based on content similarity.
 
 ✔️ Genre Filtering – Users can filter recommendations by selecting a specific genre.
@@ -15,11 +18,17 @@ The Movie Recommendation System is a Python-based web application that helps use
 
 
 🛠️ Technologies Used:
+
 Python 🐍
+
 Streamlit 🎨 (For the web interface)
+
 Pandas 📊 (For data processing)
+
 Pickle 📦 (For storing similarity matrices)
+
 TMDb API 🎥 (For fetching posters and ratings)
+
 
 
 📂 Data Used:
@@ -33,6 +42,8 @@ similarity.pkl – Precomputed similarity matrix for recommendations.
 
 
 💡 Future Improvements:
+
+
 🔹 Implement collaborative filtering for better recommendations.
 
 🔹 Add sorting options (popularity, release year, etc.).
@@ -46,17 +57,22 @@ similarity.pkl – Precomputed similarity matrix for recommendations.
 📁 movie-recommender
 │── t.py              # Main Streamlit app
 |
+
 │── new.pkl             # Processed movie dataset
 |
+
 │── movie_dict.pkl      # Movie dictionary
 |
+
 │── similarity.pkl      # Similarity matrix
 |
+
 │── README.md           # Project documentation
 
 
 
 📊 Dataset & Preprocessing
+
 
 Movies are loaded from movie_dict.pkl and new.pkl.
 
@@ -67,10 +83,13 @@ Genre filtering is applied to show relevant movies.
 
 
 📜 License
+
 This project is open-source and available under the MIT License.
 
 
+
 🚀 Future Improvements
+
 
 🔹 Implement collaborative filtering for better recommendations.
 
