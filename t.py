@@ -41,7 +41,7 @@ def recommend(movie, genre=None):
     recommended_movie_posters = []
     recommended_movie_ratings = []
     
-    for i in movie_list[1:16]:
+    for i in movie_list[1:6]:
         movie_id = movies.iloc[i[0]].movie_id # Ensure 'movie_id' column exists
         movie_title = movies.iloc[i[0]].title # Ensure 'title' column exists
         movie_genres = new_movie.iloc[i[0]].genres  #  Ensure 'genres' column exists
