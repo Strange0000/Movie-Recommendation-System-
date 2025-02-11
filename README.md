@@ -13,6 +13,7 @@ The Movie Recommendation System is a Python-based web application that helps use
 
 ✔️ Interactive UI – Built with Streamlit for an easy-to-use experience.
 
+
 🛠️ Technologies Used:
 Python 🐍
 Streamlit 🎨 (For the web interface)
@@ -24,36 +25,61 @@ TMDb API 🎥 (For fetching posters and ratings)
 📂 Data Used:
 
 movie_dict.pkl – Stores movie IDs and titles.
+
 new.pkl – Contains detailed movie data (genre, cast, etc.).
+
 similarity.pkl – Precomputed similarity matrix for recommendations.
+
 
 
 💡 Future Improvements:
 🔹 Implement collaborative filtering for better recommendations.
+
 🔹 Add sorting options (popularity, release year, etc.).
+
 🔹 Enhance UI with animations and user profiles.
+
 
 
 📂 File Structure
 
 📁 movie-recommender
 │── t.py              # Main Streamlit app
+|
 │── new.pkl             # Processed movie dataset
+|
 │── movie_dict.pkl      # Movie dictionary
+|
 │── similarity.pkl      # Similarity matrix
+|
 │── README.md           # Project documentation
 
 
+
 📊 Dataset & Preprocessing
+
 Movies are loaded from movie_dict.pkl and new.pkl.
+
 A TF-IDF similarity matrix is loaded from similarity.pkl.
+
 Genre filtering is applied to show relevant movies.
+
 
 
 📜 License
 This project is open-source and available under the MIT License.
 
+
 🚀 Future Improvements
+
 🔹 Implement collaborative filtering for better recommendations.
+
 🔹 Improve recommendation accuracy with deep learning.
+
 🔹 Add more filtering options like language and year.
+
+
+
+Developer :
+Sumit Kumar Jaiswal 
+email : sumit500123@gmail.com 
