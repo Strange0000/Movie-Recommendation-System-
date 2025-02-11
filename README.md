@@ -4,9 +4,13 @@ The Movie Recommendation System is a Python-based web application that helps use
 
 🔹 Key Features:
 ✔️ Movie Similarity-Based Recommendations – Suggests movies based on content similarity.
+
 ✔️ Genre Filtering – Users can filter recommendations by selecting a specific genre.
+
 ✔️ Poster Fetching – Displays movie posters using the TMDb API.
+
 ✔️ Movie Ratings – Fetches and shows ratings for each recommended movie.
+
 ✔️ Interactive UI – Built with Streamlit for an easy-to-use experience.
 
 🛠️ Technologies Used:
