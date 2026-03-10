@@ -2,13 +2,16 @@ import pickle
 import streamlit as st
 import pandas as pd
 import requests
+import os
 
 # Set the page title and icon
 st.set_page_config(page_title="Movie Recommender", page_icon="🎬")
 
+TMDB_API_KEY = os.getenv("TMDB_API_KEY", "bca760832242f445b873908aa955c216")
+
 # Function to fetch the movie poster
 def fetch_poster(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=bca760832242f445b873908aa955c216&language=en-US"
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&language=en-US"
     try:
         response = requests.get(url)
         data = response.json()
@@ -21,7 +24,7 @@ def fetch_poster(movie_id):
 
 # Function to fetch the movie rating
 def fetch_rating(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=bca760832242f445b873908aa955c216&language=en-US"
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&language=en-US"
     try:
         response = requests.get(url)
         data = response.json()
@@ -108,5 +111,5 @@ if st.button('Show Recommendation'):
                 st.image(recommended_movie_posters[i], use_container_width=True)  
                 st.write(f"**{recommended_movie_names[i]}**")  
                 st.write(f"⭐ Rating: {recommended_movie_ratings[i]}/10")
-else:
-    st.warning("No movies found matching your selection. Try a different genre or movie!")
+    else:
+        st.warning("No movies found matching your selection. Try a different genre or movie!")
