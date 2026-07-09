@@ -56,10 +56,10 @@ similarity.pkl – Precomputed similarity matrix for recommendations.
 
 📁 movie-recommender
 │── t.py              # Main Streamlit app
-|
+
 
 │── new.pkl             # Processed movie dataset
-|
+
 
 │── movie_dict.pkl      # Movie dictionary
 |
