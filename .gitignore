@@ -1,0 +1,7 @@
+# Large generated files (regenerate with: python generate_similarity.py)
+similarity.pkl
+
+# Python
+__pycache__/
+*.pyc
+.env
