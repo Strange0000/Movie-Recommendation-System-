@@ -1,104 +1,108 @@
-Movie Recommendation System 🎬
+# 🎬 Movie Recommendation System
 
+A content-based Movie Recommendation System built with **Python** and **Streamlit**. It suggests similar movies using cosine similarity on movie tags, displays posters and ratings via the TMDb API, and lets users filter by genre.
 
-The Movie Recommendation System is a Python-based web application that helps users discover movies similar to their favorite ones. Built using Streamlit, Pandas, and Pickle, this system utilizes a similarity matrix to recommend movies based on content similarity. Additionally, users can filter recommendations by genre for a more personalized experience.
+> 🌐 **Live Demo**: [movierecommender-st.streamlit.app](https://movierecommender-st.streamlit.app/)
 
+---
 
-🔹 Key Features:
+## ✨ Key Features
 
-✔️ Movie Similarity-Based Recommendations – Suggests movies based on content similarity.
+- **Content-Based Recommendations** — Suggests movies based on cosine similarity of tags (overview, genres, keywords, cast, crew)
+- **Genre Filtering** — Filter recommendations by any of 20 genres (Action, Comedy, Drama, Thriller, Sci-Fi, etc.)
+- **Movie Posters & Ratings** — Fetches posters and ratings from the [TMDb API](https://www.themoviedb.org/)
+- **Cached Data Loading** — Uses `@st.cache_data` for fast reruns
+- **Responsive Layout** — Displays up to 10 recommendations in rows of 5
 
-✔️ Genre Filtering – Users can filter recommendations by selecting a specific genre.
+---
 
-✔️ Poster Fetching – Displays movie posters using the TMDb API.
+## 🛠️ Tech Stack
 
-✔️ Movie Ratings – Fetches and shows ratings for each recommended movie.
+| Technology | Purpose |
+|------------|---------|
+| Python 🐍 | Core language |
+| Streamlit 🎨 | Web interface |
+| Pandas 📊 | Data processing |
+| Scikit-learn 🤖 | CountVectorizer + Cosine Similarity |
+| TMDb API 🎥 | Movie posters & ratings |
 
-✔️ Interactive UI – Built with Streamlit for an easy-to-use experience.
+---
 
+## 🚀 Getting Started
 
-🛠️ Technologies Used:
+### Prerequisites
 
-Python 🐍
+- Python 3.9+
+- pip
 
-Streamlit 🎨 (For the web interface)
+### Installation
 
-Pandas 📊 (For data processing)
+```bash
+# Clone the repository
+git clone https://github.com/Strange0000/Movie-Recommendation-System-.git
+cd Movie-Recommendation-System-
 
-Pickle 📦 (For storing similarity matrices)
+# Install dependencies
+pip install -r requirements.txt
 
-TMDb API 🎥 (For fetching posters and ratings)
+# Generate the similarity matrix (first time only, takes ~10 seconds)
+python generate_similarity.py
 
+# Run the app
+streamlit run app.py
+```
 
+The app will open at **http://localhost:8501**.
 
-📂 Data Used:
+---
 
-movie_dict.pkl – Stores movie IDs and titles.
+## 📂 Project Structure
 
-new.pkl – Contains detailed movie data (genre, cast, etc.).
+```
+Movie-Recommendation-System-/
+├── app.py                   # Main Streamlit app
+├── generate_similarity.py   # Script to build similarity matrix
+├── movie_dict.pkl           # Movie IDs, titles, and tags (4,806 movies)
+├── new.pkl                  # Detailed movie data (genres, cast, crew, etc.)
+├── similarity.pkl           # Generated cosine similarity matrix (not in repo)
+├── t.py                     # Legacy app (original version)
+├── restro.ipynb             # Data preprocessing notebook
+├── requirements.txt         # Python dependencies
+├── .gitignore               # Excludes similarity.pkl (176 MB)
+└── README.md                # This file
+```
 
-similarity.pkl – Precomputed similarity matrix for recommendations.
+> **Note**: `similarity.pkl` is not included in the repo (176 MB). Run `python generate_similarity.py` to create it locally.
 
+---
 
+## 📊 How It Works
 
-💡 Future Improvements:
+1. **Data Preprocessing** — Movie metadata (overview, genres, keywords, cast, crew) is combined into a single `tags` field per movie
+2. **Vectorization** — Tags are vectorized using `CountVectorizer` (5,000 features)
+3. **Similarity** — Cosine similarity is computed between all 4,806 movies
+4. **Recommendation** — When a user selects a movie, the top similar movies are retrieved and optionally filtered by genre
+5. **Display** — Posters and ratings are fetched from TMDb and displayed in a grid
 
+---
 
-🔹 Implement collaborative filtering for better recommendations.
+## 💡 Future Improvements
 
-🔹 Add sorting options (popularity, release year, etc.).
+- 🔹 Implement collaborative filtering for better recommendations
+- 🔹 Add sorting options (popularity, release year, etc.)
+- 🔹 Add more filtering options like language and year
+- 🔹 Enhance UI with animations and user profiles
+- 🔹 Improve recommendation accuracy with deep learning
 
-🔹 Enhance UI with animations and user profiles.
+---
 
+## 📜 License
 
+This project is open-source and available under the [MIT License](LICENSE).
 
-📂 File Structure
+---
 
-📁 movie-recommender
-│── t.py              # Main Streamlit app
-|
+## 👨‍💻 Developer
 
-│── new.pkl             # Processed movie dataset
-|
-
-│── movie_dict.pkl      # Movie dictionary
-|
-
-│── similarity.pkl      # Similarity matrix
-|
-
-│── README.md           # Project documentation
-
-
-
-📊 Dataset & Preprocessing
-
-
-Movies are loaded from movie_dict.pkl and new.pkl.
-
-A TF-IDF similarity matrix is loaded from similarity.pkl.
-
-Genre filtering is applied to show relevant movies.
-
-
-
-📜 License
-
-This project is open-source and available under the MIT License.
-
-
-
-🚀 Future Improvements
-
-
-🔹 Implement collaborative filtering for better recommendations.
-
-🔹 Improve recommendation accuracy with deep learning.
-
-🔹 Add more filtering options like language and year.
-
-
-
-Developer :
-Sumit Kumar Jaiswal 
-email : sumit500123@gmail.com 
+**Sumit Kumar Jaiswal**
+📧 sumit500123@gmail.com

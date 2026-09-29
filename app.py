@@ -3,18 +3,52 @@ import pickle
 import streamlit as st
 import pandas as pd
 import requests
+from pathlib import Path
 
 # Set the page title and icon
 st.set_page_config(page_title="Movie Recommender", page_icon="🎬")
 
+
+# --- Auto-generate similarity.pkl if missing or invalid ---
+def generate_similarity_matrix():
+    """Generate similarity.pkl from movie tags if it doesn't exist."""
+    similarity_path = Path("similarity.pkl")
+
+    # Check if similarity.pkl exists and is valid (not an LFS pointer)
+    needs_generation = False
+    if not similarity_path.exists():
+        needs_generation = True
+    elif similarity_path.stat().st_size < 1000:
+        # LFS pointer files are ~134 bytes; real file is ~176 MB
+        needs_generation = True
+
+    if needs_generation:
+        with st.spinner("🔧 First-time setup: Building similarity matrix (this takes ~10 seconds)..."):
+            from sklearn.feature_extraction.text import CountVectorizer
+            from sklearn.metrics.pairwise import cosine_similarity
+
+            with open("movie_dict.pkl", "rb") as f:
+                movies_dict = pickle.load(f)
+
+            movies_df = pd.DataFrame(movies_dict)
+            movies_df["tags"] = movies_df["tags"].fillna("")
+
+            cv = CountVectorizer(max_features=5000, stop_words="english")
+            vectors = cv.fit_transform(movies_df["tags"])
+            sim = cosine_similarity(vectors)
+
+            with open("similarity.pkl", "wb") as f:
+                pickle.dump(sim, f)
+
+        st.success("✅ Similarity matrix built successfully!")
+
+
+# Run auto-generation before loading data
+generate_similarity_matrix()
+
+
 # --- TMDB API Key ---
-# Use Streamlit secrets or environment variable, with fallback to hardcoded key
-TMDB_API_KEY = os.environ.get(
-    "TMDB_API_KEY",
-    st.secrets.get("TMDB_API_KEY", "bca760832242f445b873908aa955c216")
-    if hasattr(st, "secrets") and "TMDB_API_KEY" in st.secrets
-    else "bca760832242f445b873908aa955c216",
-)
+TMDB_API_KEY = os.environ.get("TMDB_API_KEY", "bca760832242f445b873908aa955c216")
 
 
 # --- Data Loading (cached) ---
